@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khitiz_Assignment1</title>
+</head>
+
+<body>
+    <style>
+        * {
+            border: 0px;
+            padding: 0px;
+        }
+
+        body {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+
+        .background-video-container video {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            background-repeat: repeat-y;
+        }
+
+
+        nav {
+            position: sticky;
+            top: 0px;
+            display: flex;
+            /* justify-content:; */
+            /* border: 2px solid red; */
+            background-color: white;
+            z-index: 10;
+            border-radius: 5px;
+
+        }
+
+        nav div {
+            padding: 0px 4px;
+            margin: 8px;
+        }
+
+        nav div ul {
+            display: inline-flex;
+            flex-direction: row;
+            justify-content: center;
+            /* border: 2px solid red; */
+            /* margin-right:50px; */
+            /* position:relative; */
+        }
+
+        #option {
+
+            left: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        a {
+            color: black;
+        }
+
+        a:hover {
+            color: rgb(29, 185, 84);
+        }
+
+        /* a:active {
+            color: rgb(29, 185, 84);
+        } */
+
+        nav div ul li {
+            list-style-type: none;
+            /* border: 2px solid brown; */
+            padding: 0px 30px;
+            font-size: large;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        /* .albums{
+            position:relative;
+        } */
+
+        /* .albums:active {
+            background-color: green;
+            display: block;
+        } */
+        /* .toggle-sidebar {
+            display: none;
+        } */
+        #sidebar,
+        #sidebarartists,
+        #sidebarsongs {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: red;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 1001;
+        }
+
+        #sidebar ul {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #sidebar ul li,
+        #sidebarartists ul li,
+        #sidebarsongs ul li {
+            margin: 10px;
+            padding: 10px;
+            font-size: large;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        #sidebar a,
+        #sidebarartists a,
+        #sidebarsongs a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 25px;
+            display: block;
+            transition: 0.3s;
+        }
+
+        #sidebar .closebtn,
+        #sidebarartists .closebtn,
+        #sidebarsongs .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            background-color: #333;
+            color: #fff;
+            font-size: 36px;
+            margin-left: 50px;
+            padding: 10px 20px;
+            /* cursor: pointer; */
+            /* z-index: 1001; */
+            /* Ensure it's above other elements */
+        }
+
+        #sidebar-content,
+        #sidebarartists-content,
+        #sidebarsongs-content {
+            padding: 16px;
+        }
+
+        #sidebar:target,
+        #sidebarartists:target,
+        #sidebarsongs:target {
+            width: 300px;
+        }
+
+        .albums {
+            display: block;
+            /* left:80%;  */
+        }
+
+        .albums:hover {
+            background-color: red;
+        }
+
+        /* .hidden:active {
+            right: 0;
+        } */
+
+        /* .hidden.target {
+            right: 0;
+        } */
+
+        #company {
+            font-size: 30px;
+            font-weight: 700;
+            color: rgb(29, 185, 84);
+            /* border: 2px solid brown; */
+        }
+
+        nav div img {
+            position: relative;
+            top: 10px;
+        }
+
+        #menubutton {
+            display: none;
+        }
+
+        input:hover {
+            transform: scale(1.1);
+        }
+
+        input {
+            margin: 14px;
+            padding: 3px 10px;
+            height: 35px;
+            /* align-items: center; */
+            width: 150px;
+            display: flex;
+            justify-content: center;
+            border-radius: 3px;
+            text-align: center;
+            font-weight: 650;
+            font-size: medium;
+            /* border-color: aqua; */
+            border-style: hidden;
+            transition-duration: 0.8s;
+            transition-property: all;
+        }
+
+        .intro {
+            display: flex;
+            /* flex-direction: row; */
+            margin: 10px;
+            border: 2px solid white;
+        }
+
+        .element {
+            height: 70vh;
+            width: 50%;
+            /* border: 2px solid green; */
+        }
+
+        .introtext {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            text-align: center;
+        }
+
+        #appname {
+            font-size: 70px;
+        }
+
+        .subtitle {
+            margin: 130px 10px 0px 25px;
+            font-size: 30px;
+            font-weight: 650;
+        }
+
+        .element input {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .featuredplaylists {
+            display: flex;
+            flex-direction: row;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        .featuredelements {
+            margin: 10px;
+            height: 460px;
+            width: 300px;
+            /* border:2px solid red; */
+            overflow-y: hidden;
+            border-radius: 10px;
+
+            border: 2px solid white;
+            border-top: 7px solid rgb(29, 185, 84);
+            position: relative;
+
+        }
+
+        .image {
+            display: block;
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 80%;
+            /* left:%; */
+            top: 0;
+            background-color: white;
+            overflow: hidden;
+            width: 100%;
+            height: 0;
+            transition: 0.5s ease;
+        }
+
+        .featuredelements:hover .overlay {
+            bottom: 0;
+            height: 85%;
+        }
+
+        .margin0 {
+            margin: 0px;
+            margin-left: 5px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .songsname h2 {
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .songsname li {
+            font-size: large;
+            margin: 10px;
+            font-weight: 600;
+            font-family: 'Courier New', Courier, monospace;
+
+        }
+
+        #introright {
+            position: relative;
+            display: block;
+        }
+
+        #introright img {
+            height: 430px;
+            position: relative;
+            right: 0px;
+            width: 550px;
+            transform: rotateX('30');
+        }
+
+        .minititle {
+            margin: 0 25px;
+            font-size: large;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        #searchbar {
+            width: 240px;
+        }
+
+        .searchicon {
+            position: relative;
+            left: 10px;
+            margin: auto 0 auto 25px;
+        }
+
+        /* .featuredelements p{
+            height:7px;
+            background-color: rgb(29, 185, 84);;
+        } */
+        .songsnumber {
+            height: 20px;
+            background-color: white;
+            margin: 0 0 0 0;
+            /* position:relative;
+            
+            left:250px; */
+            text-align: right;
+            z-index: 2;
+
+
+            /* top:5px; */
+        }
+
+        .symbol {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            /* border:2px solid rgb(29, 185, 84);; */
+            border-radius: 70px;
+            font-weight: 700;
+            text-align: center;
+            font-size: large;
+            margin-right: 4px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        #review {
+            height: 100%;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            overflow: hidden;
+            border: 2px solid green;
+        }
+
+        .heading {
+            text-align: center;
+        }
+
+        .userreviews {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            overflow-y: hidden;
+        }
+
+        .reviewcards {
+            margin: 10px;
+            height: 40%;
+            width: 40%;
+            background-image: url(background2.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-wrap: wrap;
+            overflow: hidden;
+            border-radius: 10px;
+            display: block;
+            background-color: red;
+        }
+
+        .reviewcards h4 {
+            display: inline;
+            margin: 10px;
+        }
+
+        /* .reviewcards img {
+            margin: 0px 10px;
+        } */
+        .reviewcards p {
+            margin: 0 0 10px 5px;
+        }
+
+        .reviewcontent {
+            margin: 20px;
+            text-align: left;
+            text-wrap: wrap;
+            font-style: italic;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        @media screen and (max-width:260px) {
+            #company span {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width:1488px) {}
+
+        #text {
+            font-size: 70px;
+        }
+
+        #login {
+            width: 0;
+            height: 60%;
+            position: fixed;
+            top: 200px;
+            left: 400px;
+            background-color: white;
+            transition: 0.5s;
+            overflow: hidden;
+            border-radius: 20px;
+            opacity: 0;
+            z-index: 4;
+            border-top: 5px solid rgb(29, 185, 84);
+        }
+
+        #login .closebtn {
+            position: absolute;
+            padding: 10px 15px;
+            margin-left: 50px;
+            /* right:0; */
+            font-size: 40px;
+            background-color: black;
+            color: white;
+
+
+        }
+
+        #login a {
+            position: absolute;
+            display: block;
+        }
+
+        #login-content {
+            padding: 20px;
+        }
+
+        #login:target {
+            width: 50%;
+            opacity: 1;
+        }
+
+        #login:target .closebtn {
+            display: block;
+        }
+
+        form label {
+            font-size: 25px;
+            display: inline;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        textarea {
+            margin-left: 20px;
+            /* margin-right: auto; */
+        }
+
+        .sidebar-content {
+            margin: 10px;
+        }
+
+        .sidebar-content label {
+            display: inline;
+            font-size: 25px;
+            margin: 20px 50px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            ;
+        }
+
+        .username {
+            width: 350px;
+            /* margin:0px 50px; */
+            background-color: rgb(238, 233, 233);
+        }
+
+        .sidebar-content input {
+            /* text-align: center; */
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid rgb(29, 185, 84);
+        }
+
+        .sidebar-content h1 {
+            text-align: center;
+        }
+
+        #loginbtn {
+            background-color: rgb(29, 185, 84);
+        }
+
+        .services {
+            display: flex;
+            justify-content: space-around;
+            /* border-bottom: 2px solid white; */
+            margin-top: 90px;
+            border-top: 5px solid green;
+            padding-bottom: 50px;
+        }
+
+        .services p {
+            font-size: 25px;
+        }
+
+        .services ul li {
+            list-style-type: none;
+            padding: 10px;
+            font-size: large;
+        }
+
+
+
+        .socialmedia {
+            padding: 50px 0px;
+            border-bottom: 2px solid white;
+        }
+
+        .socialmedia span {
+            margin-left: 10px;
+            margin-right: 40px;
+            font-size: 17px;
+        }
+
+        .socialmedia img:hover {
+            transform: scale(1.2);
+            transform: rotate(1turn);
+            transition: 0.5s;
+        }
+
+        .lastbox {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 0px;
+        }
+
+        .lastbox span {
+            margin: 0 15px;
+            font-size: 17px;
+            ;
+            text-decoration: none;
+
+        }
+
+        .quicklinks:hover {
+            color: green;
+        }
+
+        #start {
+            transition: 1s;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        /* #givereview{
+            position:relative;
+            top:50px;
+            display:flex;
+            flex-direction: column;
+
+        } */
+
+
+        @media screen and (max-width:660px) {
+            nav {
+                justify-content: space-between;
+            }
+
+            nav div ul {
+                display: none;
+            }
+
+            #menubutton {
+                display: contents;
+                /* position:absolute;
+                left:0; */
+                height: 5px;
+                margin: 0 10px;
+                padding: 0 10px;
+            }
+
+            #company span {
+                font-size: 20px;
+                text-align: start;
+            }
+
+            #company img {
+                height: 40px;
+            }
+
+            #login {
+                width: 100px;
+            }
+
+            .intro {
+                flex-wrap: wrap;
+                flex-direction: column;
+            }
+
+            /* #introright img{
+                height:400px;
+                width: 300px;;
+            } */
+            /* {
+                /* width:max-content */
+            /* }  */
+
+            .element {
+                /* text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center; */
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+
+            }
+
+            #appname {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .featuredplaylists {
+                /* flex-direction: column; */
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .featuredelements {
+                height: 220px;
+                width: 240px;
+
+            }
+
+            textarea {
+                height: 80px;
+            }
+
+            .socialmedia span {
+                display: none;
+            }
+
+            #givereview {
+                display: none;
+            }
+
+
+        }
+
+        #reaction {
+            display: flex;
+
+        }
+
+        #mode{
+            display:flex;
+            justify-content: center;
+        }
+
+        #dark,
+        #light {
+            width: max-content;
+            padding: 1rem 2rem;
+            border-radius: 4rem;
+            border: solid 0.1rem;
+            font-weight: bold;
+            background: #8893;
+        }
+
+        #theme {
+            display: none;
+
+        }
+
+        #dark {
+            display: none;
+        }
+
+        #light {
+            display: block;
+        }
+
+        body:has(#theme:checked) {
+            background: #223;
+            color: white;
+        }
+
+        body:has(#theme:checked) #dark {
+            display: block;
+        }
+
+        body:has(#theme:checked) #light {
+            display: none;
+        }
+        body:has(#theme:checked) .songsname{
+            color:black;
+        }
+        body:has(#theme:checked) label{
+            color:black;
+        }
+    </style>
+    <div id="start"></div>
+    <div class="background-video-container">
+        <video src="kshitiz3.mp4" autoplay loop muted style=" width:100%; height:fit-content;  opacity:0.5; "></video>
+    </div>
+
+
+    <nav>
+        <div id="company"><img src="spotigy4.png" alt="icon" width="40px" height="40px" style="margin-right: 0px;">
+            <span>Spotify</span>
+        </div>
+        <div id="option">
+            <ul>
+                <li><a href="#sidebar">Albums</a></li>
+                <li><a href="#sidebarartists">Artists</a></li>
+                <li><a href="#sidebarsongs">Songs</a></li>
+                <!-- <li><a href="#"></a></li> -->
+            </ul>
+
+        </div>
+        <div id="menubutton"><img src="hamburger-menu-icon-png-white-25.jpg" alt="manu" height="30px"
+                style="margin-top: 7px;"></div>
+        <a href="#login"><input type="button" value="SignUp"></a>
+    </nav>
+
+
+    <div id="login">
+        <a href="#" class="closebtn">&times;</a>
+        <div class="sidebar-content">
+            <h1>Login Here</h1>
+            <div class="intro">
+                <label for="username">Username</label>
+                <input type="text" placeholder="enter username" id="username" class="username">
+            </div>
+            <div class="intro">
+                <label for="username">Password</label>
+                <input type="text" placeholder="Enter Password" id="username" class="username">
+            </div>
+            <input type="button" value="Login" id="loginbtn">
+        </div>
+    </div>
+
+
+    <div id="sidebar">
+        <a href="#" class="closebtn">&times;</a>
+        <div class="sidebar-content">
+            <ul>
+                <li>Evergreen Songs</li>
+                <li>Pop Music</li>
+                <li>Classicals</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="sidebarartists">
+        <a href="#" class="closebtn">&times;</a>
+        <div class="sidebar-content">
+            <ul>
+                <li>Arijit Singh</li>
+                <li>Papon</li>
+                <li>Shreya Ghosal</li>
+                <li>Jagjit Singh</li>
+                <li>Krishnakumr Kunnath</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="sidebarsongs">
+        <a href="#" class="closebtn">&times;</a>
+        <div class="sidebar-content">
+            <ul>
+                <li>Main Agar Kahoon</li>
+                <li>Aankhon Me Teri</li>
+                <li>Kehdoon Tumhe</li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <section class="intro">
+        <div class="element" id="introleft">
+            <p class="introtext" id="appname">Spotify Music</p>
+            <p class="introtext minititle margin0">aapka dil kuchh kehna chahta hai</p>
+            <a href="#referfeatured"><input type="button" value="Featured Playlists"></a>
+
+        </div>
+        <div class="element" id="introright">
+            <img src="cardsimage.png" alt="svg image">
+        </div>
+    </section>
+
+
+
+    <div id="referfeatured"></div>
+    <p class="subtitle" id="featured">Featured Playlists</p>
+    <p class="minititle">Playlists You Love to Listen</p>
+    <p></p>
+    <section class="featuredplaylists">
+        <div class="featuredelements">
+            <p class="songsnumber"><span class="symbol">3</span></p>
+            <img src="aashiqui.jpg" height="370px" width="100%" class="image">
+            <div class="overlay">
+                <ul class="songsname">
+                    <h2> Songs:Aashiqui2</h2>
+                    <li>Hum mar jayenge</li>
+                    <li>Bhula Dena</li>
+                    <li>Sunn Raha Hai Tu</li>
+                    <li>Milne Hai Mujhse Aai</li>
+                    <li>Aasan Nahin Yahan</li>
+                </ul>
+            </div>
+            <h2 class="margin0">Aashiqui 2</h2>
+            <p class="margin0">Listen to the songs which made our hero, the hero</p>
+        </div>
+        <div class="featuredelements">
+            <p class="songsnumber"><span class="symbol">3</span></p>
+            <img src="Rockstar2.jpg" height="370px" width="100%">
+            <div class="overlay">
+                <ul class="songsname">
+                    <h2> Songs:Rockstar</h2>
+                    <li>Sadda Haq</li>
+                    <li>Tum Ho</li>
+                    <li>Katiyan Karun</li>
+                    <li>Nadaan Parinde</li>
+                    <li>Kun Faya Kun</li>
+                </ul>
+            </div>
+            <h2 class="margin0">Rockstar</h2>
+            <p class="margin0">Back to back bangers by Mohit Chauhan</p>
+        </div>
+        <div class="featuredelements">
+            <p class="songsnumber"><span class="symbol">3</span></p>
+            <img src="dhadak.jpg" height="370px" width="100%">
+            <div class="overlay">
+                <ul class="songsname">
+                    <h2> Songs:Dhadak</h2>
+                    <li>Pehli Baar</li>
+                    <li>Dhadak</li>
+                    <li>Jhing Jhing</li>
+                    <li>Zingaat</li>
+                </ul>
+            </div>
+            <h2 class="margin0">Dhadak</h2>
+            <p class="margin0">The melodic Shreya Ghosal</p>
+        </div>
+        <div class="featuredelements">
+            <p class="songsnumber"><span class="symbol">3</span></p>
+            <img src="ek-villain.jpg" height="370px" width="100%">
+            <div class="overlay">
+                <ul class="songsname">
+                    <h2> Songs:EkVillain</h2>
+                    <li>Shamat</li>
+                    <li>Teri Galliyan</li>
+                    <li>Dil Rakh Diya</li>
+                    <li>Nadaan Parinde</li>
+                    <li>Kun Faya Kun</li>
+                </ul>
+            </div>
+            <h2 class="margin0">Ek Villain Returns</h2>
+            <p class="margin0">Ready with new everlasting music</p>
+        </div>
+        <div class="featuredelements">
+            <p class="songsnumber"><span class="symbol">3</span></p>
+            <img src="halfgirlfriend.jpg" height="370px" width="100%">
+            <div class="overlay">
+                <ul class="songsname">
+                    <h2> Songs:Half Girlfriend</h2>
+                    <li>Main Phir Bhi Tumko Chahunga</li>
+                    <li>Baarish</li>
+                    <li>Thodi Der</li>
+                    <li>Pal Bhar</li>
+                    <li>Stay a Minute More</li>
+                </ul>
+            </div>
+            <h2 class="margin0">Half Girlfriend</h2>
+            <p class="margin0">I am not your girlfriend,I can be your half girlfriend</p>
+        </div>
+    </section>
+
+
+    <p class="subtitle" id="recommended">Recommended Playlists</p>
+    <p class="minititle">The app has its own recommendations based on your choices</p>
+    
+    <input type="text" placeholder="search your favourites" id="searchbar" style="margin-left: 25px; margin-right:0; display:inline;">
+    <img src="search.jpeg" height="20px" width="20px" id="searchicon" >
+
+
+    <section class="featuredplaylists">
+        <div class="featuredelements">
+            <p class="songsnumber"><span class="symbol">3</span></p>
+            <img src="aashiqui.jpg" height="370px" width="100%">
+            <div class="overlay">
+                <ul class="songsname">
+                    <h2> Songs:Aashiqui2</h2>
+                    <li>Hum mar jayenge</li>
+                    <li>Bhula Dena</li>
+                    <li>Sunn Raha Hai Tu</li>
+                    <li>Milne Hai Mujhse Aai</li>
+                    <li>Aasan Nahin Yahan</li>
+                </ul>
+            </div>
+            <h2 class="margin0">Aashiqui 2</h2>
+            <p class="margin0">Listen to the songs which made our hero, the hero</p>
+        </div>
+        <div class="featuredelements">
+            <p class="songsnumber"><span class="symbol">3</span></p>
+            <img src="Rockstar2.jpg" height="370px" width="100%">
+            <div class="overlay">
+                <ul class="songsname">
+                    <h2> Songs:Rockstar</h2>
+                    <li>Sadda Haq</li>
+                    <li>Tum Ho</li>
+                    <li>Katiyan Karun</li>
+                    <li>Nadaan Parinde</li>
+                    <li>Kun Faya Kun</li>
+                </ul>
+            </div>
+            <h2 class="margin0">Rockstar</h2>
+            <p class="margin0">Back to back bangers by Mohit Chauhan</p>
+        </div>
+        <div class="featuredelements">
+            <p class="songsnumber"><span class="symbol">3</span></p>
+            <img src="dhadak.jpg" height="370px" width="100%">
+            <div class="overlay">
+                <ul class="songsname">
+                    <h2> Songs:Dhadak</h2>
+                    <li>Pehli Baar</li>
+                    <li>Dhadak</li>
+                    <li>Jhing Jhing</li>
+                    <li>Zingaat</li>
+                </ul>
+            </div>
+            <h2 class="margin0">Dhadak</h2>
+            <p class="margin0">The melodic Shreya Ghosal</p>
+        </div>
+        <div class="featuredelements">
+            <p class="songsnumber"><span class="symbol">3</span></p>
+            <img src="ek-villain.jpg" height="370px" width="100%">
+            <div class="overlay">
+                <ul class="songsname">
+                    <h2> Songs:EkVillain</h2>
+                    <li>Shamat</li>
+                    <li>Teri Galliyan</li>
+                    <li>Dil Rakh Diya</li>
+                    <li>Nadaan Parinde</li>
+                    <li>Kun Faya Kun</li>
+                </ul>
+            </div>
+            <h2 class="margin0">Ek Villain Returns</h2>
+            <p class="margin0">Ready with new everlasting music</p>
+        </div>
+        <div class="featuredelements">
+            <p class="songsnumber"><span class="symbol">3</span></p>
+            <img src="halfgirlfriend.jpg" height="370px" width="100%">
+            <div class="overlay">
+                <ul class="songsname">
+                    <h2> Songs:Half Girlfriend</h2>
+                    <li>Main Phir Bhi Tumko Chahunga</li>
+                    <li>Baarish</li>
+                    <li>Thodi Der</li>
+                    <li>Pal Bhar</li>
+                    <li>Stay a Minute More</li>
+                </ul>
+            </div>
+            <h2 class="margin0">Half Girlfriend</h2>
+            <p class="margin0">I am not your girlfriend,I can be your half girlfriend</p>
+        </div>
+    </section>
+
+
+    <section class="intro" id="review">
+        <div class=" element">
+            <h2 class="margin0 heading">How much we are satisfying our users</h2>
+            <div class="userreviews">
+                <div class="reviewcards">
+                    <div class="displayed">
+                        <h4 class="margin0">Aman Kumar Verma</h4>
+                        <img src="star2.png" alt="starimage" width="20px" height="20px"
+                            style="margin-top:5px; margin-left: 15px;">
+                    </div>
+                    <p class="displayed">vermaaman@gmail.com</p>
+                    <br>
+                    <div class="reviewcontent ">Spotify is our favorite music streaming service. First launched in 2008,
+                        it has
+                        a library of more than 100 million tracks, 5 million podcasts and, thanks to a recent new
+                        update,
+                        more than 200,000 audiobooks
+                    </div>
+                </div>
+                <div class="reviewcards">
+                    <div class="displayed">
+                        <h4 class="margin0">Aman Kumar Verma</h4>
+                        <img src="star2.png" alt="starimage" width="20px" height="20px" style="margin-top:5px;">
+                    </div>
+                    <p class="displayed">vermaaman@gmail.com</p>
+                    <br>
+                    <div class="reviewcontent ">Spotify is our favorite music streaming service. First launched in 2008,
+                        it has
+                        a library of more than 100 million tracks, 5 million podcasts and, thanks to a recent new
+                        update,
+                        more than 200,000 audiobooks
+                    </div>
+                </div>
+                <div class="reviewcards">
+                    <div class="displayed">
+                        <h4 class="margin0">Aman Kumar Verma</h4>
+                        <img src="star2.png" alt="starimage" width="20px" height="20px" style="margin-top:5px;">
+                    </div>
+                    <p class="displayed">vermaaman@gmail.com</p>
+                    <br>
+                    <div class="reviewcontent ">Spotify is our favorite music streaming service. First launched in 2008,
+                        it has
+                        a library of more than 100 million tracks, 5 million podcasts and, thanks to a recent new
+                        update,
+                        more than 200,000 audiobooks
+                    </div>
+                </div>
+                <div class="reviewcards">
+                    <div class="displayed">
+                        <h4 class="margin0">Aman Kumar Verma</h4>
+                        <img src="star2.png" alt="starimage" width="20px" height="20px"
+                            style="margin-top:5px; margin-left: 10px;">
+                    </div>
+                    <p class="displayed">vermaaman@gmail.com</p>
+                    <br>
+                    <div class="reviewcontent ">Spotify is our favorite music streaming service. First launched in 2008,
+                        it has
+                        a library of more than 100 million tracks, 5 million podcasts and, thanks to a recent new
+                        update,
+                        more than 200,000 audiobooks
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="element" id="givereview">
+
+            <form action="post">
+                <h1 class="margin0 heading">Submit a Review</h1>
+                <div class=intro>
+                    <label for="username" class="reviewlabel">Enter Username</label>
+                    <input type="text" placeholder="Your Name" id="username" style="margin-left: 50px;">
+                </div>
+                <div class=intro>
+                    <label for="username" class="reviewlabel">Enter Username</label>
+                    <input type="text" placeholder="Your Name" id="username" style="margin-left: 50px;">
+                </div>
+                <div class=intro>
+                    <label for="userid">Enter Email Id</label>
+                    <input type="text" placeholder="Your Email ID" id="userid" style="margin-left: 65px;">
+                </div>
+                <label for="comments" class="reviewlabel">Write Your Review</label><br>
+                <textarea id="comments" rows="14" cols="50%" name="comments" placeholder="your review"></textarea>
+                <input type="button" value="Submit" style="margin-left: auto; margin-right: auto">
+            </form>
+        </div>
+
+    </section>
+
+    <div id="mode">
+        <input id="theme" type=checkbox>
+        <label for="theme">
+            <span id="light">☀️ Light Mode</span>
+            <span id="dark">🌙 Dark Mode</span>
+        </label>
+    </div>
+
+    <footer>
+        <div class="services">
+            <div>
+                <p>Get started</p>
+                <ul>
+                    <li>Download Spotify</li>
+                    <li>Pricing & Plans</li>
+                    <li>Transfer Music</li>
+                    <li>Supported Devices</li>
+                </ul>
+
+            </div>
+            <div>
+                <p>Discover Spotify</p>
+                <ul>
+                    <li>About</li>
+                    <li>Explore the App</li>
+                    <li>For Artists</li>
+                    <li>For Music</li>
+                </ul>
+            </div>
+            <div>
+                <p>Account</p>
+                <ul>
+                    <li>Sign Up</li>
+                    <li>Redeem Voucher</li>
+                    <li>Redeem Giftcard</li>
+                    <li>Manage Account</li>
+                </ul>
+            </div>
+            <div>
+                <p>Company</p>
+                <ul>
+                    <li>What is Tidal</li>
+                    <li>Partners</li>
+                    <li>Careers</li>
+                    <li>Press</li>
+                </ul>
+            </div>
+        </div>
+        <div class="socialmedia">
+            <span>Spotify is an artist-first, fan-centered music streaming platform that delivers over 110 million songs
+                in HiFi
+                sound quality to the global music community.</span>
+            <a href="http://www.youtube.com/@amankumarverma3308" target="_blank"><img src="instagram.png"
+                    alt="instaicon"></a>
+            <a href="http://www.youtube.com/@amankumarverma3308" target="_blank"><img src="youtubeicon.png"
+                    alt="youtube"></a>
+            <a href="http://www.youtube.com/@amankumarverma3308" target="_blank"><img src="facebook.png"
+                    alt="facebook.png"></a>
+            <a href="http://www.youtube.com/@amankumarverma3308" target="_blank"><img src="tiktok.png"
+                    alt="tiktok.png"></a>
+            <a href="http://www.youtube.com/@amankumarverma3308" target="_blank"><img src="twitter.png"
+                    alt="twitter"></a>
+            <a href="#start"><img src="arrow_up.png" src="upimage" id="upwardbtn" height="50px" width="50px"
+                    style="margin-left: 80px;"> </a>
+        </div>
+        <div class="lastbox">
+            <span>2024&copy;Spotify Music AS</span>
+            <div>
+                <a href="https://codewithharry.com" target="_blank"><span class="quicklinks">Privacy Notice</span></a>
+                <a href="https://codewithharry.com" target="_blank"><span class="quicklinks">Terms and
+                        Conditions</span></a>
+                <a href="https://codewithharry.com" target="_blank"><span class="quicklinks">Cookie Settings</span></a>
+                <a href="https://codewithharry.com" target="_blank"><span class="quicklinks">Accessibility
+                        Statement</span></a>
+                <a href="https://codewithharry.com" target="_blank"><span class="quicklinks">Contact</span></a>
+
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+</body>
+
+</html>
